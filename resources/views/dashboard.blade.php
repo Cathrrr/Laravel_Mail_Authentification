@@ -8,22 +8,18 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
-            <!-- Centered See All Movies Button -->
             <div class="flex justify-center mb-6">
                 <a href="{{ route('movies.index') }}" class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">
                     See All Movies
                 </a>
             </div>
 
-            <!-- Add Movie Details Card with Adjusted Width -->
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6 mx-auto" style="max-width: 500px;">
                 <h2 class="mb-4 text-2xl font-semibold text-center text-gray-800">Add Movie Details</h2>
 
-                <!-- Form for Adding Movie -->
                 <form action="{{ route('movies.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
-                    <!-- Movie Image -->
                     <div class="mb-4">
                         <label class="block text-gray-700">Movie Image</label>
                         <input type="file" name="image_path"
@@ -34,7 +30,6 @@
                         @enderror
                     </div>
 
-                    <!-- Movie Name -->
                     <div class="mb-4">
                         <label class="block text-gray-700">Movie Name</label>
                         <input type="text" name="name"
@@ -46,7 +41,6 @@
                         @enderror
                     </div>
 
-                    <!-- Release Year -->
                     <div class="mb-4">
                         <label class="block text-gray-700">Release Year</label>
                         <input type="number" name="release_year"
@@ -58,7 +52,6 @@
                         @enderror
                     </div>
 
-                    <!-- Movie Description -->
                     <div class="mb-4">
                         <label class="block text-gray-700">Movie Description</label>
                         <textarea name="description" rows="4"
@@ -70,7 +63,6 @@
                         @enderror
                     </div>
 
-                    <!-- Submit Button -->
                     <div class="flex justify-center">
                         <button type="submit"
                             class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">Submit</button>

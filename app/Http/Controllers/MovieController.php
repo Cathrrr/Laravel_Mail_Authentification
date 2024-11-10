@@ -41,16 +41,13 @@ class MovieController extends Controller
             'description' => 'required|string',
         ]);
 
-        // Simpan gambar jika ada
         if ($request->hasFile('image_path')) {
             $imagePath = $request->file('image_path')->store('movies', 'public');
             $validatedData['image_path'] = $imagePath;
         }
 
-        // Simpan data movie ke database
         Movie::create($validatedData);
 
-        // Redirect ke halaman movie list dengan pesan sukses
         return redirect()->route('movies.index')->with('success', 'Movie added successfully!');
     }
 
@@ -82,9 +79,7 @@ class MovieController extends Controller
             'description' => 'required|string',
         ]);
 
-        // Update the image if a new file is uploaded
         if ($request->hasFile('image_path')) {
-            // Delete the old image if exists
             if ($movie->image_path) {
                 Storage::disk('public')->delete($movie->image_path);
             }
@@ -92,13 +87,11 @@ class MovieController extends Controller
             $movie->image_path = $imagePath;
         }
 
-        // Update movie details
         $movie->name = $request->input('name');
         $movie->release_year = $request->input('release_year');
         $movie->description = $request->input('description');
         $movie->save();
 
-        // Redirect to the movie list with a success message
         return redirect()->route('movies.index')->with('success', 'Movie updated successfully!');
     }
 
@@ -107,14 +100,12 @@ class MovieController extends Controller
      */
     public function destroy(Movie $movie)
     {
-        // Delete the movie image if exists
         if ($movie->image_path) {
             Storage::disk('public')->delete($movie->image_path);
         }
 
         $movie->delete();
 
-        // Redirect to the movie list with a success message
         return redirect()->route('movies.index')->with('success', 'Movie deleted successfully!');
     }
 }
